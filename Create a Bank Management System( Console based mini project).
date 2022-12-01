@@ -1,0 +1,153 @@
+Project 1- Bank Management System(21-11-2022)
+
+Create a Bank Management System( Console based mini project). 
+
+
+
+import java.util.Scanner;
+public class Bank
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        //create intial account
+        System.out.println("How many customers do u want");
+        int n=sc.nextInt();
+        Admin c[]=new Admin[n];//5
+        for(int i=0;i<c.length;i++)
+        {
+            c[i]=new Admin();   //c[0],c[1],c[2],c[3],c[4]
+            c[i].openAccount();   
+        }
+        //run the loop until 5 is passed
+        int ch;
+        do{
+            System.out.println("Main Menu\n1.dispaly all\n2.search by account\n3.deposit\n4.withdraw\n5.exit");
+            System.out.println("enter a choice");
+            ch=sc.nextInt();//switch value
+            switch(ch)
+            {
+            case 1:
+                for(int i=0;i<c.length;i++)
+                {
+                    c[i].showAccount();
+                }
+                break;
+                case 2:
+                    System.out.println("Enter Account that you want");
+                    String acn=sc.next();
+                    boolean found=false;
+                    for(int i=0;i<c.length;i++)
+                    {
+                        found=c[i].search(acn);
+                        if(found)
+                        {
+                            break;
+                        }
+                    }
+                    if(!found)
+                    {
+                        System.out.println("search failed ur account doesn't exists");
+                    }
+                    
+                    break;
+                    case 3:
+                        System.out.println("enter the account number");
+                        acn=sc.next();
+                        found=false;
+                        for(int i=0;i<c.length;i++)
+                        {
+                            found=c[i].search(acn);
+                            if(found)
+                            {
+                                c[i].depositAccount();
+                                break;
+                            }
+                        }
+                        if(!found)
+                        {
+                            System.out.println("account doesn't exists");
+                        }
+                        break;
+                        case 4:
+                        System.out.println("enter the account number");
+                        acn=sc.next();
+                        found=false;
+                        for(int i=0;i<c.length;i++)
+                        {
+                            found=c[i].search(acn);
+                            if(found)
+                            {
+                                c[i].withdraw();
+                                break;
+                            }
+                        }
+                        if(!found)
+                        {
+                            System.out.println("account doesn't  exists");
+                        }
+                        break;
+                        case 5:
+                            System.out.println("Good bye!");
+                            break;
+            
+            }
+        }while(ch!=5);
+    }
+}
+class Admin
+{
+    private String accno;
+    private String name;
+    private long balance;
+    Scanner sc=new Scanner(System.in);
+    //method to open account
+    void openAccount(){
+        System.out.println("Enter Account number");
+        accno=sc.next();
+        System.out.println("Enter name:");
+        name=sc.next();
+        System.out.println("Enter balance ");
+        balance=sc.nextLong();
+    }
+    //method to display account details
+    void showAccount()
+    {
+        System.out.println("Display the details:");
+        System.out.println(accno+" "+name+" "+balance);
+        
+    }
+    //method to deposit money
+    void depositAccount()
+    {
+        System.out.println("enter the amount to deposit");
+        long sum=sc.nextLong();
+        balance=balance+sum;
+    }
+    //method to withdraw money
+    void withdraw()
+    {
+        System.out.println("enter the amount to withdraw:");
+        long add=sc.nextLong();
+        if(add<=balance)
+        {
+            balance=balance-add;
+        }
+        else
+        {
+            System.out.println("Insufficient balance");
+            
+        }
+    }
+    //method to search an account number
+    boolean search(String acn)
+    {
+        if(accno.equals(acn))
+        {
+            showAccount();
+            return true;
+             }
+             return (false);
+      
+    }
+}
