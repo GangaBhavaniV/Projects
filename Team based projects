@@ -1,0 +1,127 @@
+Project 2- Team based projects 
+
+import java.util.Scanner;
+public class Project
+{
+    public static void main(String args[])
+    {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("*****SCHOOL MANAGEMENT SYSTEM*****");
+    System.out.println("Enter  the no.of Students:");
+    int r=sc.nextInt();
+    Admin c[]=new Admin[r];
+    for(int i=0;i<r;i++)
+    {
+        c[i]=new Admin();
+        c[i].Details();
+    }
+    int ch;
+    do
+    {
+    System.out.println("Main Menu\n1.Student Details\n2.Fee Details\n3.Marks Result\n4.Exit");
+    System.out.println("Enter the Choice");
+     ch=sc.nextInt();
+    switch(ch)
+    {
+        case 1:
+            for(int i=0;i<c.length;i++){
+            c[i].show();}
+         break;
+          
+         case 2:
+          for(int i=0;i<c.length;i++)
+          {
+          c[i].Student();}
+          break;
+          
+         case 3:
+          
+         for(int i=0;i<c.length;i++)
+              {
+         c[i].Marks();}
+        break;
+          
+    case 4:
+        System.out.println("Thank You");
+        break;
+    
+          }
+    }while(ch!=4);
+  }
+}
+    
+class Admin
+{
+    private String id;
+    private String s;
+    private long balance=10000;
+    private String p;
+   Scanner sc=new Scanner(System.in);
+
+  void Details()
+  {
+  System.out.println("Enter the Student Name:");
+    s=sc.nextLine();
+   System.out.println("Enter Student id:");
+  id=sc.nextLine();
+  System.out.println("Enter the class");
+  p=sc.nextLine();
+  
+}
+void show()
+{
+    System.out.println(" Student Name: "+s);
+    
+   System.out.println(" Student id: "+id);
+  
+  System.out.println(" Class: "+p);
+}
+ void Student()
+{
+    
+
+System.out.println(" Student Name: "+s);
+System.out.println("Available Balance: "+balance);
+System.out.println("Enter the Amount to pay:");
+int amt=sc.nextInt();
+balance=balance-amt;
+System.out.println("Remaining Balance: "+balance);
+}
+ void Marks()
+{
+    System.out.println("**************MARKS IN SUBJECTS*****************");
+    System.out.println("Enter the Marks in Telugu");
+     int n=sc.nextInt();
+    System.out.println(" Enter the Marks in English");
+    int m=sc.nextInt();
+    System.out.println(" Enter the Marks in maths");
+    int z=sc.nextInt();
+    System.out.println("*****RESULT*****");
+    if(n>25)
+    {
+        System.out.println("Telugu:Pass");
+    }
+    else
+    {
+        System.out.println("Telugu:Fail");
+    }
+    if(m>25)
+    {
+        System.out.println("English:Pass");
+    }
+    else
+    {
+        System.out.println("English:Fail");
+    }
+    if(z>25)
+    {
+        System.out.println("Maths:Pass");
+    }
+    else
+    {
+        System.out.println("Maths:Fail");
+    }
+    int y=n+m+z;
+    System.out.println("Total Marks: "+y);
+}
+}
